@@ -1,0 +1,7 @@
+language:
+  - go
+
+
+branchs:
+  only:
+    - master
