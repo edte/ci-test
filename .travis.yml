@@ -5,3 +5,7 @@ language:
 branchs:
   only:
     - master
+
+
+script:
+  - go run
