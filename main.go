@@ -4,16 +4,17 @@
 package main
 
 import (
-	"net/http"
+	"github.com/gin-gonic/gin"
 )
 
-type A struct {
-}
-
-func (a A) ServeHTTP(writer http.ResponseWriter, request *http.Request) {
-	writer.Write([]byte("hello world"))
-}
-
 func main() {
-	http.ListenAndServe(":8080", A{})
+	r := gin.Default()
+
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"msg": "hello world",
+		})
+	})
+
+	r.Run()
 }

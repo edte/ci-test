@@ -1,11 +1,20 @@
 language:
   - go
 
-
 branchs:
   only:
     - master
 
-
 script:
+  - go mod tidy
   - go build main.go
+
+before_install:
+  - openssl aes-256-cbc -K $encrypted_3d82dee1fe6a_key -iv $encrypted_3d82dee1fe6a_iv
+    -in id_rsa.enc -out ~/.ssh/id_rsa -d
+    - chmod 600 ~/.ssh/id_rsa
+    - echo -e "Host 47.98.57.152\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+
+after_success:
+  - ssh root@47.98.57.152
+  - vim a
