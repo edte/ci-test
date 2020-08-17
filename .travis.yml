@@ -18,23 +18,14 @@ before_script:
 
 
 scrip:
+  - go build main.go
 
 after_success:
 
   - before_deploy:
-      - go build main.go
 
 
   - deploy:
-      provider: releases
-      api_key:
-        secure:"$API_KEY"
-
-        file: "main"
-        skip_cleanup: true
-        on:
-          tags: true
-          repo: edte/ci-test
 
   - after_deploy:
 
@@ -68,4 +59,3 @@ after_failure:
 
 # - go mod tidy
 #- go build main.go
-
